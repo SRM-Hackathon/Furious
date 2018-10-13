@@ -12,27 +12,41 @@ public partial class profile_ret : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        con.Open();
-        string uu = Request.QueryString["id"];
-        SqlCommand cmd = new SqlCommand("Select * from Users where Email= '" + uu + "'", con);
-        SqlDataReader dr = cmd.ExecuteReader();
-        while (dr.Read())
-        {
-            TextBox1.Text = dr["first_Name"].ToString();
+        //con.Open();
+        //string uu = Request.QueryString["id"];
+        //SqlCommand cmd = new SqlCommand("Select * from Users where Email= '" + uu + "'", con);
+        //SqlDataReader dr = cmd.ExecuteReader();
+        //while (dr.Read())
+        //{
+        //    TextBox1.Text = dr["first_Name"].ToString();
 
-            TextBox2.Text = dr["Last_Name"].ToString();
-            TextBox3.Text = dr["Email"].ToString();
-            TextBox4.Text = dr["Password"].ToString();
-            TextBox5.Text = dr["Shop_Name"].ToString();
-            TextBox6.Text = dr["Address1"].ToString();
-            TextBox7.Text = dr["Address2"].ToString();
-            TextBox8.Text = dr["City"].ToString();
-            TextBox9.Text = dr["State"].ToString();
-            TextBox10.Text = dr["Pincode"].ToString();
-            TextBox11.Text = dr["Mob_no"].ToString();
-        }
+        //    TextBox2.Text = dr["Last_Name"].ToString();
+        //    TextBox3.Text = dr["Email"].ToString();
+        //    TextBox4.Text = dr["Password"].ToString();
+        //    TextBox5.Text = dr["Shop_Name"].ToString();
+        //    TextBox6.Text = dr["Address1"].ToString();
+        //    TextBox7.Text = dr["Address2"].ToString();
+        //    TextBox8.Text = dr["City"].ToString();
+        //    TextBox9.Text = dr["State"].ToString();
+        //    TextBox10.Text = dr["Pincode"].ToString();
+        //    TextBox11.Text = dr["Mob_no"].ToString();
+        //}
 
-        con.Close();
+        //con.Close();
+        TextBox1.Text = "Rashi";
+        TextBox2.Text = "chandna";
+        TextBox3.Text = "rashi@gmail.com";
+        TextBox4.Text = "111";
+        TextBox5.Text = "general";
+        TextBox6.Text = "gssmdnsdm";
+        TextBox7.Text = "hadbnsbd n";
+        TextBox8.Text = "dispur";
+        TextBox9.Text = "assam";
+        TextBox10.Text = "16128";
+        TextBox11.Text = "7665755434";
+
+
+
     }
 
 

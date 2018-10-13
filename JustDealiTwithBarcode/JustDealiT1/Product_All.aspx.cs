@@ -25,7 +25,7 @@ public partial class Product_All : System.Web.UI.Page
 
     protected void Lenovo_Click(object sender, EventArgs e)
     {
-        query = "Select pid from Product_Details where Product_Name = 'Lenovo Ideapad v110'";
+        query = "Select Product_Id from Product_Details where Product_Name = 'Lenovo Ideapad v110'";
         cmd = new SqlCommand(query, con);
 
 
@@ -35,5 +35,20 @@ public partial class Product_All : System.Web.UI.Page
             Session["s1"] = rs[0];
             Response.Redirect("Product_Details.aspx?id=" + rs[0]);
         }
+    }
+
+    protected void Hp_Click(object sender, EventArgs e)
+    {
+        query = "Select Product_Id from Product_Details where Product_Name = 'HP Envy13'";
+        cmd = new SqlCommand(query, con);
+
+
+        SqlDataReader rs = cmd.ExecuteReader();
+        if (rs.Read())
+        {
+            Session["s1"] = rs[0];
+            Response.Redirect("Product_Details.aspx?id=" + rs[0]);
+        }
+
     }
 } 

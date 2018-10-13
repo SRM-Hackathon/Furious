@@ -40,8 +40,8 @@ public partial class Product_Details : System.Web.UI.Page
         con.Open();
         // SortBy.SelectedItem.Text = "Price";
         //SortBy.SelectedValue.ToString()="Price";
-        /*
-                if (!IsPostBack)
+        
+             /*   if (!IsPostBack)
                 {
                     query = "select * from Category";
                     da = new SqlDataAdapter(query, con);
@@ -63,16 +63,17 @@ public partial class Product_Details : System.Web.UI.Page
 
         //con.Close();
         string pid = Request.QueryString["id"];
+       
         SqlCommand cmd = new SqlCommand("select Picture from Products where Product_Id='" + pid + "'", con);
 
         String r = cmd.ExecuteScalar().ToString();
 
         Image1.Visible = true;
         Image1.ImageUrl = "~\\Images\\" + r;
-        // SqlCommand cmd1 = new SqlCommand("Select * from Product_Details where Product_Id='"+ pid +"'", con);
-        //SqlDataReader dr = cmd.ExecuteReader();
+       /*  SqlCommand cmd1 = new SqlCommand("Select * from Product_Details where Product_Id='"+ pid +"'", con);
+        SqlDataReader dr = cmd.ExecuteReader();
 
-        /*  while (dr.Read())
+         while (dr.Read())
           {
 
               Prod_Name.Text = dr["Product_Name"].ToString();
@@ -100,12 +101,14 @@ public partial class Product_Details : System.Web.UI.Page
         SqlCommand cmd6 = new SqlCommand("Select Product_Name from Product_Details where Product_Id='" + pid + "'", con);
 
         Prod_Name.Text = (String)cmd6.ExecuteScalar();
-     /*   
+
+       // string pid = Request.QueryString["id"];
+       // con.Open();
         if (!IsPostBack)
         {
             //SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True");
             //conn.Open();
-            SqlCommand cmd1 = new SqlCommand("Select Retail_Id,Unit_Price,Discount,ExpectedDelivery from products where Product_Id= 'P101' order by Unit_Price", con);
+            SqlCommand cmd1 = new SqlCommand("Select Retail_Id,Unit_Price,Discount,ExpectedDelivery from products where Product_Id= '" + pid + "' order by Unit_Price", con);
 
 
             //    string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
@@ -117,16 +120,18 @@ public partial class Product_Details : System.Web.UI.Page
             }
         }
 
-        string htmlTable = "<table border='1' cellpadding='0' cellspacing='0'><tr>";
+        string htmlTable = "<table border='1' cellpadding='3' cellspacing='3'><tr>";
 
 
         foreach (DataColumn column in dt.Columns)
         {
             htmlTable += "<th>" + column.ColumnName + "</th>";
         }
-        htmlTable += "</tr>";
+       // htmlTable += "</tr>";
         foreach (DataRow dr in dt.Rows)
         {
+
+            htmlTable += "</tr>";
             string rid = dr["Retail_Id"].ToString();
             Double Unit_Price = Convert.ToDouble(dr["Unit_Price"]);
 
@@ -136,12 +141,67 @@ public partial class Product_Details : System.Web.UI.Page
             htmlTable += "<tr><td>" + rid + "</td><td>" + Unit_Price + "</td><td>" + Discount + "</td><td>" + ExpectedDelivery + "</td></tr>";
         }
         htmlTable += "</table>";
-        lblTable.Text = htmlTable;*/
-        con.Close();
-    }
-    protected void SortBy_SelectedIndexChanged(object sender, EventArgs e)
+        lblTable.Text = htmlTable;
 
-    {
+
+
+
+
+
+
+
+
+        if (!IsPostBack)
+        {
+            //SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True");
+            //conn.Open();
+            SqlCommand cmd1 = new SqlCommand("Select Retail_Id,Unit_Price,Discount,ExpectedDelivery from products where Product_Id='" + pid + "' order by ExpectedDelivery", con);
+
+
+            //    string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+
+            using (SqlDataAdapter sda = new SqlDataAdapter(cmd1))
+            {
+                cmd1.CommandType = CommandType.Text;
+                sda.Fill(dt);
+            }
+        }
+
+        string htmlTable1 = "<table border='1' cellpadding='3' cellspacing='3'><tr>";
+
+
+        foreach (DataColumn column in dt.Columns)
+        {
+            htmlTable1 += "<th>" + column.ColumnName + "</th>";
+        }
+        foreach (DataRow dr in dt.Rows)
+        {
+
+            htmlTable1 += "</tr>";
+            string rid = dr["Retail_Id"].ToString();
+            Double Unit_Price = Convert.ToDouble(dr["Unit_Price"]);
+
+            string Discount = dr["Discount"].ToString();
+            string ExpectedDelivery = dr["ExpectedDelivery"].ToString();
+
+            htmlTable += "<tr><td>" + rid + "</td><td>" + Unit_Price + "</td><td>" + Discount + "</td><td>" + ExpectedDelivery + "</td></tr>";
+        }
+        htmlTable1 += "</table>";
+        lblTable1.Text = htmlTable;
+        con.Close();
+
+
+
+
+
+
+    }
+       
+    
+     
+   // protected void SortBy_SelectedIndexChanged(object sender, EventArgs e)
+
+    //{
 
         /*   con.Open();
           // String cat = "Laptops";
@@ -154,9 +214,9 @@ public partial class Product_Details : System.Web.UI.Page
            {
                ProdName.Items.Add(new ListItem(dr1[0].ToString()));
            }*/
-        con.Open();
+       // con.Open();
        // ds.Clear();
-        string get_name, name,query;
+      /*  string get_name, name,query;
         name = SortBy.SelectedItem.Text;
         get_name = SortBy.SelectedValue.ToString();
 
@@ -203,6 +263,57 @@ public partial class Product_Details : System.Web.UI.Page
             }
             htmlTable += "</table>";
             lblTable.Text = htmlTable;
-            con.Close();
+            con.Close();*/
+        
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string pid = Request.QueryString["id"];
+        con.Open();
+        if (!IsPostBack)
+        {
+            //SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True");
+            //conn.Open();
+            SqlCommand cmd1 = new SqlCommand("Select Retail_Id,Unit_Price,Discount,ExpectedDelivery from products where Product_Id= '"+pid+"' order by Unit_Price", con);
+
+
+            //    string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+
+            using (SqlDataAdapter sda = new SqlDataAdapter(cmd1))
+            {
+                cmd1.CommandType = CommandType.Text;
+                sda.Fill(dt);
+            }
         }
+
+        string htmlTable = "<table border='1' cellpadding='0' cellspacing='0'><tr>";
+
+
+        foreach (DataColumn column in dt.Columns)
+        {
+            htmlTable += "<th>" + column.ColumnName + "</th>";
+        }
+        htmlTable += "</tr>";
+        foreach (DataRow dr in dt.Rows)
+        {
+            string rid = dr["Retail_Id"].ToString();
+            Double Unit_Price = Convert.ToDouble(dr["Unit_Price"]);
+
+            string Discount = dr["Discount"].ToString();
+            string ExpectedDelivery = dr["ExpectedDelivery"].ToString();
+
+            htmlTable += "<tr><td>" + rid + "</td><td>" + Unit_Price + "</td><td>" + Discount + "</td><td>" + ExpectedDelivery + "</td></tr>";
+        }
+        htmlTable += "</table>";
+        lblTable.Text = htmlTable;
+        con.Close();
     }
+
+
+    protected void ExpectedDelivery_Click(object sender, EventArgs e)
+    {
+        
+    }
+}
+
+

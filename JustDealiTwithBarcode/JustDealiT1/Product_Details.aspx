@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
+   <%-- <form id="form1" runat="server">--%>
 
     <ul class="breadcrumb">
     <li><a href="index.html">Home</a> <span class="divider">/</span></li>
@@ -48,23 +49,19 @@
     &nbsp;<br />
         <br />
         
-        <h3> Comparison with other Retailers<asp:Localize ID="Localize1" runat="server"></asp:Localize>
+        <h3> Sorting of Retailers on the basis of Price<asp:Localize ID="Localize1" runat="server"></asp:Localize>
         </h3>
         <p> 
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Price" />
+            <asp:Button ID="ExpectedDelivery" runat="server" OnClick="ExpectedDelivery_Click" Text="ExpectedDelivery" />
         </p>
-        <asp:Panel ID="Panel1" runat="server">
+    <p> </p>
+
+        <asp:Panel ID="Panel2" runat="server">
         </asp:Panel>
-    </form>
-    <p> &nbsp;</p>
-
-        <table class="auto-style1
-        <tr>
-            <td class="auto-style3">
-               
-            <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-       
-
+  &nbsp;
+      
+      
 <h3>
                     &nbsp;</h3>
         <p>
@@ -73,6 +70,8 @@
                     <asp:Label ID="lblTable" runat="server" Text="Label"></asp:Label>
         </p>
         <p style="font-size: 14px; vertical-align: middle">
+            <h3> Sorting of Retailers on the basis of Expected Delivery</h3>
+                    <asp:Label ID="lblTable1" runat="server" Text="Label"></asp:Label>
                     </p>
         <p>
                     &nbsp;</p>
@@ -85,5 +84,6 @@
           
     </form>
 
-    </asp:Content>
+    </form>
+</asp:Content>
 

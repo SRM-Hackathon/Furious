@@ -224,7 +224,7 @@
 				<div class="caption">
 				  <h5> HP Envy13 </h5>
                     <p> 
-                        <asp:Button ID="Hp" runat="server" Text="Click Here" />
+                        <asp:Button ID="Hp" runat="server" Text="Click Here" OnClick="Hp_Click" />
                     </p>
                     <p> 
                         <asp:Label ID="Price0" runat="server" Text="Label"></asp:Label>
